@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net4.8</TargetFramework>
+    <RootNamespace>nex_FiveMServerLauncher</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\discord.png" />
+    <None Remove="Resources\pedPicture.png" />
+    <None Remove="Resources\Wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EpEren.Fivem.ServerStatus">
+      <HintPath>..\..\net48\EpEren.Fivem.ServerStatus.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\net48\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\net48\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\discord.png" />
+    <Resource Include="Resources\pedPicture.png" />
+    <Resource Include="Resources\Wallpaper.jpg" />
+  </ItemGroup>
+
+</Project>

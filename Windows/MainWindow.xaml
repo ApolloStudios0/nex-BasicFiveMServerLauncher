@@ -1,0 +1,226 @@
+﻿<Window x:Class="nex_FiveMServerLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:nex_FiveMServerLauncher"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="768" Width="1440">
+
+    <Window.Resources>
+        <Style x:Key="FormControls" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+
+        <!-- Rounded Form -->
+        <Rectangle Fill="White" Grid.Row="1" Grid.ColumnSpan="24" Grid.RowSpan="24"
+                   RadiusX="8" RadiusY="8" Margin="0,5,0,0"/>
+        
+
+        <!-- Main Content -->
+        <Border>
+            <Grid>
+                
+                <!-- Banner Form Controls -->
+                <Rectangle Fill="#252525" RadiusX="8" RadiusY="8" MouseDown="MoveForm"/>
+                <Rectangle Fill="#252525" VerticalAlignment="Bottom" Height="10" MouseDown="MoveForm"/>
+
+                <!-- Form Banner -->
+                <Border>
+                    <Grid>
+
+                        <!-- Form Title -->
+                        <Label x:Name="ProgramBanner"
+                               Content="NexScripts FiveM Server Launcher" Foreground="White" MouseDown="MoveForm"
+                               FontFamily="Segoe UI Semibold" Opacity="0.6"
+                               Grid.ColumnSpan="3"/>
+
+                        <!-- Controls -->
+                        <StackPanel Orientation="Horizontal" Grid.Column="6" HorizontalAlignment="Right">
+                            <Button Style="{StaticResource FormControls}" Content="-" Click="ButtonDelegator"/>
+                            <TextBox/>
+                            <Button Style="{StaticResource FormControls}" Content="X" Click="ButtonDelegator"/>
+                        </StackPanel>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Border>
+
+                <!-- Server Details -->
+                <Border Grid.Row="1" Grid.RowSpan="2">
+                    <Grid Margin="0,2,0,0">
+
+                        <Image Source="/Resources/Wallpaper.jpg" Stretch="UniformToFill"
+                               Grid.ColumnSpan="2" RenderOptions.BitmapScalingMode="Fant" Margin="-10, -5, -5, -5">
+                            <Image.Effect>
+                                <BlurEffect Radius="10"/>
+                            </Image.Effect>
+                        </Image>
+
+                        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Width="900" Height="600" Fill="#252525"
+                                   Opacity="0.6"
+                                   RadiusX="10" RadiusY="10"/>
+
+                        <!-- Server Details -->
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Width="900" Height="600">
+                            <Grid>
+                            
+                                <!-- Photo -->
+                                <Ellipse Height="120" Width="120" x:Name="ServerPhoto"/>
+
+                                <!-- Other Details -->
+                                <Label FontFamily="Segoe UI Semibold" Grid.RowSpan="2"
+                                       Content="RSM Freeroam #1" Foreground="White"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="29" Margin="0,0,0,-20" x:Name="ServerName"/>
+                                <Label FontFamily="Segoe UI" Grid.RowSpan="2"
+                                       Content="Connect With 10 Other Players" Foreground="White"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="15" Margin="0,0,0,-80" x:Name="ServerDescriptionLabel" Opacity="0.6"/>
+                                
+                                <!-- Connect -->
+                                <Button Content="Connect" Background="#252525"
+                                        Grid.Row="1" Grid.RowSpan="2" Width="250" Height="50"
+                                        BorderBrush="LawnGreen" BorderThickness="0.7" Click="ButtonDelegator"/>
+                                
+                                <!-- Player Count -->
+                                <Label Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       Content="Connect With X Other Players" Margin="0,100,0,0" Opacity="0.6"
+                                       Foreground="White" FontFamily="Segoe UI Semibold"
+                                       FontSize="14"
+                                       x:Name="PlayerCountLabel"/>
+                                
+                                <!-- Player List -->
+                                <ScrollViewer Grid.Row="2" Grid.RowSpan="2" Margin="0,80,0,10" Width="600">
+                                    <ListView x:Name="PlayerListView" Foreground="White" FontFamily="Segoe UI Semibold">
+                                        <ListView.Template>
+                                            <ControlTemplate>
+                                                <!-- Empty template to allow ScrollViewer to capture mouse scroll -->
+                                                <ItemsPresenter />
+                                            </ControlTemplate>
+                                        </ListView.Template>
+                                    </ListView>
+                                </ScrollViewer>
+                                
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </Border>
+                        
+                        <!-- Right Details -->
+                        <Border Grid.Column="1" Margin="0,0,20,0">
+                            <Grid>
+                                
+                                <Rectangle Fill="#252525" Grid.Row="1" RadiusX="10" RadiusY="10" Opacity="0.6"
+                                           Margin="0,0,0,10"/>
+                                <Rectangle Fill="#252525" Grid.Row="2" RadiusX="10" RadiusY="10" Opacity="0.6"
+                                           Margin="0,10,0,0"/>
+                                
+                                <!-- Discord Photo -->
+                                
+                                <Border Grid.Row="1" Margin="0,0,0,0">
+                                    <Grid>
+                                        <Ellipse Width="120" Height="120">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="/Resources/Discord.png" RenderOptions.BitmapScalingMode="Fant"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Ellipse Width="120" Height="120" Grid.Row="1" x:Name="SecondaryServerPhoto"/>
+
+
+                                        <Label FontFamily="Segoe UI Semibold" Grid.Column="1" Content="Join Our Discord:"
+                                               Foreground="White" FontSize="18" VerticalAlignment="Center"
+                                               Margin="0,0,0,40"/>
+                                        <Button VerticalAlignment="Center" Grid.Column="1" Foreground="White"
+                                                Content="Join" Background="Transparent" BorderBrush="#5f72c2" BorderThickness="2"
+                                                Margin="0,0,0,-25" Width="200" HorizontalAlignment="Left" Click="ButtonDelegator" />
+
+                                        <Label FontFamily="Segoe UI Semibold" Grid.Column="1" Grid.Row="1" Content="View Our Website / Webstore"
+                                               Foreground="White" FontSize="18" VerticalAlignment="Center"
+                                               Margin="0,0,0,40"/>
+                                        <Button VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Foreground="White"
+                                                Content="View" Background="Transparent" BorderBrush="#c0484f" BorderThickness="2"
+                                                Margin="0,0,0,-25" Width="200" HorizontalAlignment="Left" Click="ButtonDelegator"/>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                    </Grid>
+                                </Border>
+                                    
+                                 <!-- Development Log / Server Rules -->
+                                <Border Grid.Row="2" Margin="10,20,10,10">
+                                    <Grid>
+
+                                        <Label Content="Server Rules" FontFamily="Segoe UI Semibold"
+                                               Foreground="White" FontSize="16" x:Name="WhatToDisplayLogs"/>
+
+                                        <ListView Grid.Row="1" x:Name="ServerLogsListView"
+                                                  Foreground="White" FontFamily="Segoe UI Semibold"/>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+                                </Border>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="70"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </Border>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="450"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Border>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>    
+        </Border>
+        
+    </Grid>
+</Window>
